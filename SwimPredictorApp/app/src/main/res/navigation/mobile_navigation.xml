@@ -12,11 +12,11 @@
 
     <fragment
         android:id="@+id/navigation_clock"
-        android:name="org.swimpredictor.ui.clock.DashboardFragment"
+        android:name="org.swimpredictor.ui.clock.ClockFragment"
         tools:layout="@layout/fragment_clock" />
 
     <fragment
         android:id="@+id/navigation_database"
-        android:name="org.swimpredictor.ui.database.NotificationsFragment"
+        android:name="org.swimpredictor.ui.database.DatabaseFragment"
         tools:layout="@layout/fragment_database" />
 </navigation>
