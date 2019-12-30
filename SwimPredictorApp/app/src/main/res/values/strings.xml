@@ -2,6 +2,9 @@
     <string name="app_name">SwimPredictor</string>
     <string name="enter_50m_time">Enter 50m time</string>
     <string name="predict_results">Predict results!</string>
+    <string name="title_clock">Clock</string>
+    <string name="title_home">Home</string>
+    <string name="title_database">Stored data</string>
     <string-array name="gender_spinner">
         <item>Male</item>
         <item>Female</item>
