@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.tensorflow.lite.Interpreter;
@@ -21,6 +24,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadModelFromAssets();
+        setAdapterForSpinner(R.id.gender, getResources().getIdentifier("gender_spinner", "array", getPackageName()));
+        setAdapterForSpinner(R.id.age, getResources().getIdentifier("age_spinner", "array", getPackageName()));
+        setAdapterForSpinner(R.id.training_age, getResources().getIdentifier("training_age_spinner", "array", getPackageName()));
+
+    }
+
+    private void setAdapterForSpinner(int spinnerID, int ressource){
+        Spinner spinner = (Spinner) findViewById(spinnerID);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), ressource, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private void loadModelFromAssets(){
         File f = new File(getCacheDir()+"/model100m.tflite");
         if (!f.exists()) try {
 
@@ -43,14 +61,16 @@ public class MainActivity extends AppCompatActivity {
         //double[] input =  {0, 9, 2, 36.80};
         //print(model100m.getInputDetails());
         float[][] input = new float[1][4];
-        input[0][0] = (float) 0;
-        input[0][1] = (float) 9;
-        input[0][2] = (float) 2;
-        input[0][3] = (float) 36.80;
-        System.out.println(input[0].length + "");
+        // read the values from input
+        String gender = ((Spinner) findViewById(R.id.gender)).getSelectedItem().toString();
+        input[0][0] = (float) (gender.equals("female") ? 1:0);
+        input[0][1] = Float.parseFloat(((Spinner) findViewById(R.id.age)).getSelectedItem().toString());
+        input[0][2] = Float.parseFloat(((Spinner) findViewById(R.id.training_age)).getSelectedItem().toString());
+        //input[0][3] = (float) 36.80;
+        input[0][3] = Float.parseFloat(((EditText) findViewById(R.id.time_50m)).getText().toString());
         float[][] prediction = new float[1][1];
         model100m.run(input, prediction);
         TextView text = (TextView) findViewById(R.id.random_textview);
-        text.setText(Arrays.toString(prediction[0]));
+        text.setText(prediction[0][0] + "");
     }
 }
