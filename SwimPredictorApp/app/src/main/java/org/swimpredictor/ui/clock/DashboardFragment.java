@@ -1,4 +1,4 @@
-package org.swimpredictor.ui.dashboard;
+package org.swimpredictor.ui.clock;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

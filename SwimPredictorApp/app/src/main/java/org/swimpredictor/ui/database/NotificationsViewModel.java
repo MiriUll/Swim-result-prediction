@@ -1,4 +1,4 @@
-package org.swimpredictor.ui.notifications;
+package org.swimpredictor.ui.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

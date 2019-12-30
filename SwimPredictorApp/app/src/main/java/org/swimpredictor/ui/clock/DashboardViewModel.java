@@ -1,4 +1,4 @@
-package org.swimpredictor.ui.dashboard;
+package org.swimpredictor.ui.clock;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
