@@ -40,15 +40,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        //setAdapterForSpinner(R.id.gender, getResources().getIdentifier("gender_spinner", "array", getPackageName()));
-        //setAdapterForSpinner(R.id.age, getResources().getIdentifier("age_spinner", "array", getPackageName()));
-        //setAdapterForSpinner(R.id.training_age, getResources().getIdentifier("training_age_spinner", "array", getPackageName()));
-    }
+        //load shared preferences object
 
-    private void setAdapterForSpinner(int spinnerID, int ressource){
-        Spinner spinner = (Spinner) findViewById(spinnerID);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), ressource, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
     }
 }

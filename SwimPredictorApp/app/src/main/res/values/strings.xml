@@ -5,6 +5,10 @@
     <string name="title_clock">Clock</string>
     <string name="title_home">Home</string>
     <string name="title_database">Stored data</string>
+    <string name="preference_file_key">SwimmingPreferences</string>
+    <string name="play_pause_button_for_stopwatch">Play/pause button for stopwatch</string>
+    <string name="reset_for_stopwatch">reset for stopwatch</string>
+    <string name="time0">00:00:00</string>
     <string-array name="gender_spinner">
         <item>Male</item>
         <item>Female</item>
