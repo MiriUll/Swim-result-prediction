@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    private String toHumanReadbleTime(long time){
+    public static String toHumanReadbleTime(long time){
         int seconds = (int) (time / 1000);
 
         int minutes = seconds / 60;

@@ -53,4 +53,7 @@ dependencies {
     // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
     implementation 'com.google.android.material:material:1.0.0'
+
+    // tableview for samples in database
+    implementation 'de.codecrafters.tableview:tableview:2.8.0'
 }

@@ -15,4 +15,7 @@ public interface SampleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void inset(DataSample... dataSamples);
+
+    @Delete
+    void delete(DataSample dataSample);
 }
