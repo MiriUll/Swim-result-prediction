@@ -39,8 +39,8 @@ def train_eval_model(X_train, y_train, X_test, y_test, epochs=500):
 
 def store_model(model, filename):
     model.save(storepath + filename)
-    # convert_to_tflite(storepath + filename)
-    #converter = tf.lite.TFLiteConverter.from_keras_model(model)
-    #tflite_model = converter.convert()
-    #open(storepath + filename + '_lite', 'wb').write(tflite_model)
+    # convert and store tensorflow lite model
+    converter = tensorflow_core.lite.TFLiteConverter.from_saved_model(storepath + filename)
+    tflite_model = converter.convert()
+    open(storepath + filename + '.tflite', 'wb').write(tflite_model)
 

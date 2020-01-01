@@ -25,17 +25,17 @@ print("Train 100m times")
 model100m,_,_ = train_eval_model(X_train, y_train100m, X_test, y_test100m)
 
 print("Train 200m times")
-model200m,_,_ = train_eval_model(X_train, y_train100m, X_test, y_test100m)
+model200m,_,_ = train_eval_model(X_train, y_train200m, X_test, y_test200m)
 
 print("Train 200m times using 100m training data")
 X_train_int = np.c_[X_train, y_train100m]
 X_test_int = np.c_[X_test, y_test100m]
-model200m_train_itermediate,_,_ = train_eval_model(X_train_int, y_train100m, X_test_int, y_test100m)
+model200m_train_itermediate,_,_ = train_eval_model(X_train_int, y_train200m, X_test_int, y_test200m)
 
 print("Train 200m times using 100m prediction data")
 X_train_int = np.c_[X_train, model100m.predict(X_train)]
 X_test_int = np.c_[X_test, model100m.predict(X_test)]
-model200m_itermediate,_,_ = train_eval_model(X_train_int, y_train100m, X_test_int, y_test100m)
+model200m_itermediate,_,_ = train_eval_model(X_train_int, y_train200m, X_test_int, y_test200m)
 
 # from visualise_utils import scatter_predictions
 # test_predictions = model100m.predict(X_test).flatten()
