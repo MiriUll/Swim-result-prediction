@@ -9,11 +9,8 @@ storepath = 'models/'
 def build_model(X_train):
     model = tensorflow_core.python.keras.Sequential([
         Dense(64, activation='relu', input_shape=[len(X_train[0])]),
-        Dense(64, activation='relu'),
         Dense(1)
     ])
-
-    optimizer = tensorflow_core.python.keras.optimizers.RMSprop(0.001)
 
     model.compile(loss='mse',
                   optimizer='rmsprop',
@@ -32,7 +29,7 @@ def train_eval_model(X_train, y_train, X_test, y_test, epochs=500):
     eval = model.evaluate(X_test, y_test, verbose=2)
     _, mae, _ = eval
 
-    print("Testing set Mean Abs Error: {:5.2f} MPG".format(mae))
+    print("Testing set Mean Abs Error: {:5.2f}".format(mae))
 
     return model, history, eval
 
