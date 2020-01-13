@@ -48,8 +48,6 @@ public class DatabaseFragment extends Fragment {
 
         AppDatabase db = Room.databaseBuilder(Objects.requireNonNull(getActivity()).getApplicationContext(), AppDatabase.class, "swimpredictor_database").allowMainThreadQueries().build();
         sampleDao = db.sampleDao();
-        DataSample example = new DataSample("Example", 0, 9, 2, 36.80, 86.83, 178.53);
-        sampleDao.inset(example);
 
         tableView = root.findViewById(R.id.tableView);
         samplesList = sampleDao.getAll();
@@ -97,7 +95,7 @@ public class DatabaseFragment extends Fragment {
                     .setTitle("Delete sample")
                     .setMessage("Do you really want to detele sample "+clickedData[0])
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             sampleDao.delete(samplesList.get(rowIndex));
