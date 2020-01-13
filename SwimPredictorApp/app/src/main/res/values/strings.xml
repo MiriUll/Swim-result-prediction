@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SwimPredictor</string>
     <string name="enter_50m_time">Enter 50m time</string>
-    <string name="predict_results">Predict results!</string>
+    <string name="predict_results">\u0020Predict results!\u0020</string>
     <string name="title_clock">Clock</string>
     <string name="title_home">Home</string>
     <string name="title_database">Stored data</string>
@@ -9,6 +9,8 @@
     <string name="play_pause_button_for_stopwatch">Play/pause button for stopwatch</string>
     <string name="reset_for_stopwatch">reset for stopwatch</string>
     <string name="time0">00:00:00</string>
+    <string name="enter_data">\u0020Please enter your data:</string>
+    <string name="empty_time">--:--,--</string>
     <string-array name="gender_spinner">
         <item>Male</item>
         <item>Female</item>

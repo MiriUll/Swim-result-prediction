@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait">
+
 
     <TableLayout
         android:id="@+id/table_layout"
@@ -14,13 +23,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:text="Please enter your data:"
+            android:text="@string/enter_data"
+            android:textColor="@color/black"
+            android:shadowColor="@color/colorPrimary"
             android:textSize="22sp" />
 
         <TableRow android:paddingTop="20dp">
 
             <TextView
-                android:text="Gender:"
+                android:text="  Gender:"
                 android:textSize="18sp" />
 
             <Spinner
@@ -33,7 +44,7 @@
         <TableRow android:paddingTop="6dp">
 
             <TextView
-                android:text="Age:"
+                android:text="  Age:"
                 android:textSize="18sp" />
 
             <Spinner
@@ -46,7 +57,7 @@
         <TableRow android:paddingTop="8dp">
 
             <TextView
-                android:text="Training age:"
+                android:text="  Training age:"
                 android:textSize="18sp" />
 
             <Spinner
@@ -59,14 +70,14 @@
         <TableRow android:paddingTop="7dp">
 
             <TextView
-                android:text="50m time"
+                android:text="  50m time"
                 android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/time_50m"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/table_header_background"
+                android:backgroundTint="@color/colorAccentBlue"
                 android:hint="@string/enter_50m_time"
                 android:inputType="numberDecimal"
                 android:singleLine="true" />
@@ -75,46 +86,85 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/table_layout"
         android:background="@color/black"/>
 
-    <Button
-        android:id="@+id/predict"
+    <TextView
+        android:id="@+id/textview_100m_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:background="@color/table_header_background"
-        android:text="@string/predict_results"
-        android:textSize="18sp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:text="@string/empty_time"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/table_layout" />
-
-    <TextView
-        android:id="@+id/textview_100m"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textSize="18sp"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="@id/textview200m"
-        app:layout_constraintTop_toBottomOf="@id/predict"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintRight_toRightOf="@id/textview_200m_time"
+        app:layout_constraintTop_toBottomOf="@id/table_layout"
+        app:layout_constraintVertical_bias="1.7"
         app:layout_goneMarginLeft="200dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:textSize="18sp"
-        android:id="@+id/textview200m"
+        android:layout_marginTop="60dp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:id="@+id/textview_200m_time"
+        app:layout_constraintLeft_toLeftOf="@id/textview_100m_time"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/table_layout"
+        android:text="@string/empty_time"/>
+
+    <TextView
+        android:id="@+id/textview_100m"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="100m time"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/textview_200m"
+        app:layout_constraintTop_toBottomOf="@id/textview_200m_time"
+        app:layout_goneMarginLeft="200dp"/>
+        <!--app:layout_constraintVertical_bias="0.3"-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:id="@+id/textview_200m"
         app:layout_constraintLeft_toLeftOf="@id/textview_100m"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/predict"
-        android:text="Test"/>
+        app:layout_constraintTop_toBottomOf="@id/textview_200m_time"
+        android:text="200m time"/>
+
+    <Button
+        android:id="@+id/predict"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/rounded_corners"
+        android:text="@string/predict_results"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_100m" />
+
+    <Button
+        android:id="@+id/store_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/predict"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
