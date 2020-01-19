@@ -1,6 +1,5 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 import numpy as np
 
 # change path to "../data_test.csv" for test data
@@ -21,25 +20,29 @@ plt.ylabel('predicted times [s]')
 
 fig, ax = plt.subplots()
 
+
 def plot_long_distances():
+    """
+    Plot 50m as x-axis and corresponding longer distances as y-axis
+    """
     X_train_50m = X_train[:, 3]
     print('Pearson correlation for 200m: ', np.corrcoef(X_train_50m, y_train200m))
     print('Pearson correlation for 100m: ', np.corrcoef(X_train_50m, y_train100m))
 
     ax.scatter(X_train_50m, y_train100m, label='100m times')
     ax.scatter(X_train_50m, y_train200m, color='r', label='200m times')
-    #for i, _ in enumerate(y_train100m):
-        #ax.annotate(str(X_train[i][2]), xy=(X_train_50m[i], y_train100m[i]))
-        #ax.annotate(str(X_train[i][2])+'', xy=(X_train_50m[i], y_train200m[i]))
 
 
 def plot_ages():
+    """
+    plot same scatter as above but highlight different ages with colors
+    """
     age9, age10, age11, age12, age13, age14 = [], [], [], [], [], []
     concat = np.concatenate((X_train, y_train100m[:, None], y_train200m[:, None]), axis=1)
     for i, sample in enumerate(concat):
         if 9.0 == sample[1]:
             age9.append(sample)
-        elif sample[1]==10.0:
+        elif sample[1] == 10.0:
             age10.append(sample)
         elif sample[1] == 11.0:
             age11.append(sample)
@@ -64,6 +67,9 @@ def plot_ages():
 
 
 def plot_training_ages():
+    """
+    Plot 50m-longer distances scatter but highlight training age using different colors
+    """
     trage1, trage2, trage3, trage4, trage5, trage6, trage7 = [], [], [], [], [], [], []
     concat = np.concatenate((X_train, y_train100m[:, None], y_train200m[:, None]), axis=1)
     for i, sample in enumerate(concat):
@@ -97,7 +103,9 @@ def plot_training_ages():
     ax.scatter(np.array(trage7)[:, 3], np.array(trage7)[:, 5], color='k')
 
 
-plot_training_ages()
+plot_long_distances()
 ax.legend(loc=2)
-plt.savefig('/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/plots/training_data_train_ages.pdf',format='pdf')
+plt.savefig(
+    '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/plots/training_data_train_ages.pdf',
+    format='pdf')
 plt.show()

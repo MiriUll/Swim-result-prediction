@@ -6,6 +6,12 @@ from visualisation.visualise_utils import scatter_predictions, scatter_multiple_
 
 
 def reuse_model(X, model_path):
+    """
+    Load a model from file and use it for new prediction
+    :param X: data to predict labeld for
+    :param model_path: path to model
+    :return: predictions
+    """
     interpreter = tf.lite.Interpreter(model_path=model_path)
     interpreter.allocate_tensors()
     input_details = interpreter.get_input_details()
@@ -20,6 +26,9 @@ def reuse_model(X, model_path):
 
 
 def eval_standard_models():
+    """
+    evaluate 100 mand 200m models using the test data
+    """
     y_pred_100m = reuse_model(X,
                               '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/models/model100m.tflite')
     print("Mean Absolute Error for 100m: " + str(mean_absolute_error(y_100m, y_pred_100m)))
@@ -34,6 +43,9 @@ def eval_standard_models():
 
 
 def eval_200_alternative():
+    """
+    compare 200m prediction alternatives and scatter their predictions
+    """
     y_pred_100m = reuse_model(X,
                               '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/models/model100m.tflite')
     y_pred_200m = reuse_model(X,
@@ -44,18 +56,22 @@ def eval_200_alternative():
                                        '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/models/model200m_using_100m_orig.tflite')
     print("Mean Absolute Error for 200m using true 100m: " + str(mean_absolute_error(y_200m, y_pred_200m_training)))
     y_pred_200m_training_pred100 = reuse_model(X_100_pred,
-                                       '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/models/model200m_using_100m_orig.tflite')
-    print("Mean Absolute Error for 200m using true 100m and test predicted: " + str(mean_absolute_error(y_200m, y_pred_200m_training_pred100)))
+                                               '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/models/model200m_using_100m_orig.tflite')
+    print("Mean Absolute Error for 200m using true 100m and test predicted: " + str(
+        mean_absolute_error(y_200m, y_pred_200m_training_pred100)))
 
     y_pred_200m_predict = reuse_model(X_100_pred,
                                       '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/models/model200m_using_100m.tflite')
     print("Mean Absolute Error for 200m using predicted 100m: " + str(mean_absolute_error(y_200m, y_pred_200m_predict)))
-    scatter_multiple_predictions(y_200m, [y_pred_200m, y_pred_200m_training_pred100, y_pred_200m_predict, y_pred_200m_training],
+    scatter_multiple_predictions(y_200m,
+                                 [y_pred_200m, y_pred_200m_training_pred100, y_pred_200m_predict, y_pred_200m_training],
                                  '/home/anschutzm/Dokumente/TUM/WS1920/Seminar/anschuetz-miriam/machine_learning/plots/eval_200m_variations.pdf',
                                  ['b', 'r', 'g', 'y'], [',', 'o', '^', '.'],
-                                 ['original model', 'train: true, test: predicted', 'train, test: predicted', 'train, test: true'])
+                                 ['original model', 'train: true, test: predicted', 'train, test: predicted',
+                                  'train, test: true'])
 
 
+# Load the test data from file
 test_data = pd.read_csv("data_test.csv", sep=';', header=0, dtype={'Gender': int, 'Age': int, 'Competitionage': int,
                                                                    '50m': np.float64, '100m': np.float64,
                                                                    '200m': np.float64})
