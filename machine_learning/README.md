@@ -1,5 +1,5 @@
 # Machine learning
-
+We were using PyCharm to run the Python code. As Tensorflow may cause problems, we recommend to use PyCharm as well.
 ## Dependencies
 All dependencies are listed in the _requirements.txt_ file. You can run it with  
 pip install -r requirements.txt
