@@ -3,8 +3,7 @@ import numpy as np
 
 # set random seed for reproducible results
 np.random.seed(1)
-from tensorflow_core.python.keras.layers import Dense, Dropout
-from tensorflow_core.python.keras.callbacks import EarlyStopping
+from tensorflow_core.python.keras.layers import Dense
 
 storepath = 'models/'
 
