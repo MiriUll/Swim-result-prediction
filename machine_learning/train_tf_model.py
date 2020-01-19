@@ -42,8 +42,8 @@ model200m_train_100, _, _ = train_eval_model(X_train_int, y_train200m, X_test_in
 print("Train 200m times using 100m prediction data")
 pred_100_train = model100m.predict(X_train)
 pred_100_test = model100m.predict(X_test)
-X_train_int = np.concatenate((X_train, pred_100_train[:, None]), axis=1)
-X_test_int = np.concatenate((X_test, pred_100_test[:, None]), axis=1)
+X_train_int = np.concatenate((X_train, pred_100_train), axis=1)
+X_test_int = np.concatenate((X_test, pred_100_test), axis=1)
 model200m_itermediate, _, _ = train_eval_model(X_train_int, y_train200m, X_test_int, y_test200m)
 
 store_model(model200m_train_100, 'model200m_using_100m_orig')
